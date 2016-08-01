@@ -1,0 +1,17 @@
+---
+- name: Apply templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - src: main.cf.j2
+      dest: /etc/postfix/main.cf
+    - src: sasl_passwd.j2
+      dest: /etc/postfix/sasl_passwd
+- name: Generate SASL postmap
+  command: postmap /etc/postfix/sasl_passwd
+  args:
+    chdir: /etc/postfix

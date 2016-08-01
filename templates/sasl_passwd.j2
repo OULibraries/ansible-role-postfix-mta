@@ -1,0 +1,5 @@
+{% if( smtp_start_tls == true )  %}
+{{ smtp_host }}:{{ smtp_port }} {{ smtp_authuser }}:{{ smtp_authpassword }}
+{% else %}
+[127.0.0.1]:1025 {{ smtp_authuser }}:{{ smtp_authpassword }}
+{% endif %}

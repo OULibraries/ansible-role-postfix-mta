@@ -1,0 +1,12 @@
+chroot = /var/lib/stunnel/
+pid = /stunnel.pid
+cert = {{ smtp_cert_path }}/localhost/cert.pem
+key = {{ smtp_key_path }}/localhost/privkey.pem
+options = NO_SSLv2
+options = SINGLE_ECDH_USE
+options = SINGLE_DH_USE
+
+[smtp]
+accept = 127.0.0.1:1025
+client = yes
+connect = {{ smtp_host }}:{{ smtp_port }}
