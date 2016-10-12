@@ -1,7 +1,7 @@
 chroot = /var/lib/stunnel/
 pid = /stunnel.pid
-cert = {{ smtp_cert_path }}/localhost/cert.pem
-key = {{ smtp_key_path }}/localhost/privkey.pem
+cert = {{ smtp_cert_path }}/postfix-mta/cert.pem
+key = {{ smtp_key_path }}/postfix-mta/privkey.pem
 options = NO_SSLv2
 options = SINGLE_ECDH_USE
 options = SINGLE_DH_USE

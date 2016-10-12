@@ -1,4 +1,15 @@
 ---
+- name: Ensure ssl cert directory exists
+  file: path="{{ smtp_cert_path }}/postfix-mta" state=directory
+- name: Ensure ssl key directory exists
+  file: path="{{ smtp_key_path }}/postfix-mta" state=directory
+- name: Generate a self-signed cert.
+  sudo: yes
+  command: >
+     openssl req -newkey rsa:2048 -nodes -sha256 -x509 -subj "/CN=postfix-mta" -days 90 -keyout "{{ smtp_key_path }}"/postfix-mta/privkey.pem -out "{{ smtp_cert_path }}"/postfix-mta/cert.pem
+  args:
+    creates: "{{ smtp_key_path }}/postfix-mta/privkey.pem"
+
 - name: Apply templates
   template:
     src: "{{ item.src }}"

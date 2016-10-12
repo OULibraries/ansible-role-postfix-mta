@@ -1,18 +1,8 @@
 ---
-- name: Ensure ssl cert directory exists
-  file: path="{{ smtp_cert_path }}/localhost" state=directory
-- name: Ensure ssl key directory exists
-  file: path="{{ smtp_key_path }}/localhost" state=directory
-- name: Ensure Apache is stopped
-  service:
-    name: httpd
-    state: stopped
-- name: Generate a self-signed cert.
-  sudo: yes
-  command: >
-     openssl req -newkey rsa:2048 -nodes -sha256 -x509 -subj "/CN=localhost" -days 90 -keyout "{{ smtp_key_path }}"/localhost/privkey.pem -out "{{ smtp_cert_path }}"/localhost/cert.pem
-  args:
-    creates: "{{ smtp_key_path }}/localhost/privkey.pem"
+- name: Install yum packages
+  yum:
+    name: stunnel
+    state: latest
 - name: stunnel chroot dir
   file:
     path: /var/lib/stunnel

@@ -4,4 +4,7 @@
     state: latest
   with_items:
     - cyrus-sasl-plain
+    - cyrus-sasl-scram
+    - cyrus-sasl-md5
+    - cyrus-sasl-ntlm
     - stunnel

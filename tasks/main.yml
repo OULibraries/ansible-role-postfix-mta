@@ -3,7 +3,6 @@
 
 - include: yum.yml
   sudo: yes
-  when: not smtp_start_tls
 
 - include: stunnel.yml
   sudo: yes
