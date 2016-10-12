@@ -1,0 +1,6 @@
+---
+- name: Run postfix on boot
+  service:
+    name: postfix
+    state: restarted
+    enabled: yes
