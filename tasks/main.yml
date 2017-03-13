@@ -2,14 +2,14 @@
 # tasks file for postfix-mta
 
 - include: yum.yml
-  sudo: yes
+  become: true
 
 - include: stunnel.yml
-  sudo: yes
+  become: true
   when: not smtp_start_tls
 
 - include: configure.yml
-  sudo: yes
+  become: true
 
 - include: services.yml
-  sudo: yes
+  become: true
