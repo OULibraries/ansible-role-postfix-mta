@@ -13,3 +13,6 @@
 
 - include: services.yml
   become: true
+
+- include: assets.yml
+  become: true

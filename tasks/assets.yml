@@ -1,0 +1,20 @@
+---
+
+- name: Ensure /opt/oulib/postfix-mta/bin exists
+  file:
+    path: /opt/oulib/postfix-mta/bin
+    state: directory
+    mode: 0755
+    owner: root
+    group: wheel
+    recurse: yes
+
+- name: scripts to /opt/oulib/postfix-mta/bin
+  copy:
+    src: "{{ item }}"
+    dest: /opt/oulib/postfix-mta/bin
+    mode: 0755
+    owner: root
+    group: wheel
+  with_items:
+    - mail_test.sh
