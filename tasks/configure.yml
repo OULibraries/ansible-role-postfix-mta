@@ -1,8 +1,10 @@
 ---
 - name: Ensure ssl cert directory exists
   file: path="{{ smtp_cert_path }}/postfix-mta" state=directory
+
 - name: Ensure ssl key directory exists
   file: path="{{ smtp_key_path }}/postfix-mta" state=directory
+
 - name: Generate a self-signed cert.
   become: true
   command: >
@@ -14,7 +16,7 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    mode: 0644
+    mode: 0600
     owner: root
     group: root
   with_items:
@@ -22,7 +24,16 @@
       dest: /etc/postfix/main.cf
     - src: sasl_passwd.j2
       dest: /etc/postfix/sasl_passwd
+
 - name: Generate SASL postmap
   command: postmap /etc/postfix/sasl_passwd
   args:
     chdir: /etc/postfix
+
+- name: SASL postmap permissions
+  file:
+    path: /etc/postfix/sasl_passwd.db
+    mode: 0600
+    owner: root
+    group: root
+    state: present
