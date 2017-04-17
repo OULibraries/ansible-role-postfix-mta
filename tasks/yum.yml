@@ -7,4 +7,5 @@
     - cyrus-sasl-scram
     - cyrus-sasl-md5
     - cyrus-sasl-ntlm
+    - mailx
     - stunnel
