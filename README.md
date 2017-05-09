@@ -31,7 +31,7 @@ Example Playbook
 License
 -------
 
-TBD
+[MIT](https://github.com/OULibraries/ansible-role-postfix-mta/blob/master/LICENSE)
 
 Author Information
 ------------------
