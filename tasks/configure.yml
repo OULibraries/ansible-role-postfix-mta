@@ -12,7 +12,18 @@
   args:
     creates: "{{ smtp_key_path }}/postfix-mta/privkey.pem"
 
-- name: Apply templates
+- name: Apply config templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - src: main.cf.j2
+      dest: /etc/postfix/main.cf
+
+- name: Apply restricted-access templates
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -20,8 +31,6 @@
     owner: root
     group: root
   with_items:
-    - src: main.cf.j2
-      dest: /etc/postfix/main.cf
     - src: sasl_passwd.j2
       dest: /etc/postfix/sasl_passwd
 
