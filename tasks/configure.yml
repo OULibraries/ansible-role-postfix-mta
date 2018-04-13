@@ -24,15 +24,30 @@
       dest: /etc/postfix/main.cf
     - src: sasl_passwd.j2
       dest: /etc/postfix/sasl_passwd
+    - src: sender_canonical.j2
+      dest: /etc/postfix/sender_canonical
 
 - name: Generate SASL postmap
   command: postmap /etc/postfix/sasl_passwd
   args:
     chdir: /etc/postfix
 
+- name: Generate sender_canonical postmap
+  command: postmap /etc/postfix/sender_canonical
+  args:
+    chdir: /etc/postfix
+
 - name: SASL postmap permissions
   file:
     path: /etc/postfix/sasl_passwd.db
+    mode: 0600
+    owner: root
+    group: root
+    state: file
+
+- name: sender_canonical postmap permissions
+  file:
+    path: /etc/postfix/sender_canonical.db
     mode: 0600
     owner: root
     group: root

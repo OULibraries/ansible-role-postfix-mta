@@ -1,0 +1,5 @@
+{% if( user_sender_config == true )  %}
+{{ sender_config }}
+{% else %}
+/.*/ lib-noreply@ou.edu
+{% endif %}
