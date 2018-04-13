@@ -1,6 +1,0 @@
----
-# defaults file for postfix-mta
-smtp_start_tls: true
-smtp_cert_path: /etc/pki/tls/certs
-smtp_key_path: /etc/pki/tls/private
-canonical_sender_maps: 1 
