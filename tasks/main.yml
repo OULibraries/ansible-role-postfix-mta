@@ -8,6 +8,10 @@
   become: true
   when: not smtp_start_tls
 
+- include: sender.yml
+  become: true
+  when: use_sender_maps
+
 - include: configure.yml
   become: true
 

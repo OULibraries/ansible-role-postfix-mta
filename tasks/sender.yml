@@ -1,0 +1,21 @@
+---
+- name: Apply templates
+  template:
+  - src: sender_canonical.j2
+    dest: /etc/postfix/sender_canonical
+    mode: 0600
+    owner: root
+    group: root
+ 
+- name: Generate sender_canonical postmap
+  command: postmap /etc/postfix/sender_canonical
+  args:
+    chdir: /etc/postfix
+
+- name: sender_canonical postmap permissions
+  file:
+    path: /etc/postfix/sender_canonical.db
+    mode: 0600
+    owner: root
+    group: root
+    state: file
