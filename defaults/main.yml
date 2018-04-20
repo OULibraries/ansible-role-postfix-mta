@@ -3,3 +3,5 @@
 smtp_start_tls: true
 smtp_cert_path: /etc/pki/tls/certs
 smtp_key_path: /etc/pki/tls/private
+use_sender_maps: 0
+sender_config: /.*/ lib-noreply@ou.edu
