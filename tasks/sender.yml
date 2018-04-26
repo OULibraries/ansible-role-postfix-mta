@@ -1,7 +1,7 @@
 ---
 - name: Apply templates
   template:
-  - src: sender_canonical.j2
+    src: sender_canonical.j2
     dest: /etc/postfix/sender_canonical
     mode: 0600
     owner: root
