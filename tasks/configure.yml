@@ -22,6 +22,8 @@
   with_items:
     - src: main.cf.j2
       dest: /etc/postfix/main.cf
+    - src: master.cf.j2
+      dest: /etc/postfix/master.cf
 
 - name: Apply restricted-access templates
   template:
